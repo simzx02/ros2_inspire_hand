@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>inspire_hand_ros</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="xzhongs1127@gmail.com">simzx</maintainer>
+  <license>TODO: License declaration</license>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>inspire_sdkpy</depend>
+  <depend>python3-pyqt5</depend>
+  <depend>python3-pyqt5.qtcore</depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
