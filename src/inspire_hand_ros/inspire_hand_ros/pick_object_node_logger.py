@@ -67,11 +67,36 @@ class PickObjectNode(Node):
             self.open_all_fingers()
             time.sleep(1.0)
 
-    def open_all_fingers(self):
-        self.cmd.angle_set = [850] * 6
-        self.cmd.mode = 0b0001  # angle mode for opening
-        self.pubr.Write(self.cmd)
-        self.get_logger().info("Opening fingers...")
+    #def open_all_fingers(self):
+    #    self.cmd.angle_set = [850] * 6
+    #    self.cmd.mode = 0b0001  # angle mode for opening
+    #    self.pubr.Write(self.cmd)
+    #    self.get_logger().info("Opening fingers...")
+
+    def open_all_fingers(self, speed=200): #200 is acceptable speed
+        """
+        Gradually open all fingers with speed control using mode 9 (angle + speed).
+
+        :param speed: The speed value to control the release (higher value = faster release).
+        """
+        self.get_logger().info("Opening fingers with angle + speed control...")
+
+        # Start from the current angles and gradually increase to the fully open position
+        target_angles = [850] * 6  # Fully open position
+        while any(current < target for current, target in zip(self.current_angles, target_angles)):
+            for i in range(6):
+                if self.current_angles[i] < target_angles[i]:
+                    self.current_angles[i] = min(self.current_angles[i] + speed, target_angles[i])
+
+            # Send the updated angles and speed to the hand
+            self.cmd.angle_set = self.current_angles
+            self.cmd.speed_set = [speed] * 6  # Set the speed for all fingers
+            self.cmd.mode = 0b1001  # Mode 9: angle + speed
+            self.pubr.Write(self.cmd)
+
+            time.sleep(0.1)  # Small delay to control the speed of opening
+
+        self.get_logger().info("Fingers fully opened.")
 
     def progressive_close(self):
         start_time = time.time()  # Record the start time of the closing process

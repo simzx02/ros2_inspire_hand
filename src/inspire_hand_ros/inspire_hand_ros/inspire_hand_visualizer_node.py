@@ -56,13 +56,13 @@ class DDSHandler(Node):
     def update_data_state(self, states_msg: inspire_dds.inspire_hand_state):
         with self.data_state_lock:
             self.states = {
-                'POS_ACT': states_msg.pos_act,
+                #'POS_ACT': states_msg.pos_act,
                 'ANGLE_ACT': states_msg.angle_act,
                 'FORCE_ACT': states_msg.force_act,
                 'CURRENT': states_msg.current,
                 'ERROR': states_msg.err,
                 'STATUS': states_msg.status,
-                'TEMP': states_msg.temperature
+            #    'TEMP': states_msg.temperature
             }
             self.has_received_data = True
             self.get_logger().debug(f"State data received")
@@ -72,13 +72,13 @@ class DDSHandler(Node):
         if not self.has_received_data:
             return {
                 'states': {
-                    'POS_ACT': [0, 0, 0, 0, 0, 0],
+                    #'POS_ACT': [0, 0, 0, 0, 0, 0],
                     'ANGLE_ACT': [0, 0, 0, 0, 0, 0],
                     'FORCE_ACT': [0, 0, 0, 0, 0, 0],
                     'CURRENT': [0, 0, 0, 0, 0, 0],
                     'ERROR': [0, 0, 0, 0, 0, 0],
                     'STATUS': [0, 0, 0, 0, 0, 0],
-                    'TEMP': [0, 0, 0, 0, 0, 0]
+                #    'TEMP': [0, 0, 0, 0, 0, 0]
                 },
                 'touch': {}
             }

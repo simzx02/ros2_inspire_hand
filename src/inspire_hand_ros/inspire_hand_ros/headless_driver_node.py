@@ -13,12 +13,15 @@ class InspireHandNode(Node):
         self.angle_pub = self.create_publisher(Float32MultiArray, 'inspire_hand/angle', 10)
         self.force_pub = self.create_publisher(Float32MultiArray, 'inspire_hand/force', 10)
         self.status_pub = self.create_publisher(Float32MultiArray, 'inspire_hand/status', 10)
+        self.current_pub = self.create_publisher(Float32MultiArray, 'inspire_hand/current', 10)  # New publisher
+        self.speed_pub = self.create_publisher(Float32MultiArray, 'inspire_hand/speed', 10)    # New publisher
         
         # Define the structure for the hand data
         self.states_structure = [
             ('angle_act', 1546, 6, 'short'),
             ('force_act', 1582, 6, 'short'),
             ('status', 1612, 3, 'byte'),
+            ('current', 1594, 6, 'short')  # New state for current
         ]
     
         # Initialize the hand interface
@@ -49,23 +52,26 @@ class InspireHandNode(Node):
             # Publish angle data
             if 'angle_act' in data_dict:
                 angle_msg = Float32MultiArray()
-                # Convert values to float32
                 angle_msg.data = [float(x) for x in data_dict['angle_act']]
                 self.angle_pub.publish(angle_msg)
 
             # Publish force data
             if 'force_act' in data_dict:
                 force_msg = Float32MultiArray()
-                # Convert values to float32
                 force_msg.data = [float(x) for x in data_dict['force_act']]
                 self.force_pub.publish(force_msg)
 
             # Publish status data
             if 'status' in data_dict:
                 status_msg = Float32MultiArray()
-                # Convert values to float32
                 status_msg.data = [float(x) for x in data_dict['status']]
                 self.status_pub.publish(status_msg)
+
+            # Publish current data (new)
+            if 'current' in data_dict:
+                current_msg = Float32MultiArray()
+                current_msg.data = [float(x) for x in data_dict['current']]
+                self.current_pub.publish(current_msg)
 
             # Log statistics every second
             if self.call_count % 100 == 0:  # Every 100 calls (approximately 1 second)
@@ -73,8 +79,8 @@ class InspireHandNode(Node):
                 frequency = self.call_count / elapsed_time
                 self.get_logger().info(
                     f'Current frequency: {frequency:.2f} Hz, '
-                    f'Calls: {self.call_count}, '
-                    f'Time: {elapsed_time:.2f} s'
+                    f'Calls: {self.call_count/100}, '
+                    f'Elapsed Time: {elapsed_time:.2f} s'
                 )
 
         except Exception as e:
@@ -94,8 +100,8 @@ def main(args=None):
         frequency = node.call_count / elapsed_time if elapsed_time > 0 else 0
         node.get_logger().info(
             f'Node shutting down. '
-            f'Total calls: {node.call_count}, '
-            f'Total time: {elapsed_time:.2f} s, '
+            f'Total calls: {node.call_count/100}, '
+            f'Total elapsed time: {elapsed_time:.2f} s, '
             f'Final frequency: {frequency:.2f} Hz'
         )
     finally:
