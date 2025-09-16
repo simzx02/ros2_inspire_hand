@@ -17,6 +17,13 @@
   <depend>inspire_sdkpy</depend>
   <depend>python3-pyqt5</depend>
   <depend>python3-pyqt5.qtcore</depend>
+  <depend>unitree_sdk2py.core.channel</depend>
+  <depend>csv</depend>
+  <depend>datetime</depend>
+  <depend>sys</depend>
+  <depend>time</depend>
+  <depend>threading</depend>
+  <depend>os</depend>
 
   <export>
     <build_type>ament_python</build_type>

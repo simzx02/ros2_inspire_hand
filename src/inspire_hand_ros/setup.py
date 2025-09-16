@@ -23,7 +23,9 @@ setup(
             'dds_publisher_node = inspire_hand_ros.dds_publisher_node:main',
             'inspire_hand_visualizer_node = inspire_hand_ros.inspire_hand_visualizer_node:main',
             'headless_driver_node = inspire_hand_ros.headless_driver_node:main',
-            'finger_control_node = inspire_hand_ros.finger_control_node:main'
+            'finger_control_node = inspire_hand_ros.finger_control_node:main',
+            'pick_object_node = inspire_hand_ros.pick_object_node:main',
+            'pick_object_node_logger = inspire_hand_ros.pick_object_node_logger:main',
             
         ],
     },

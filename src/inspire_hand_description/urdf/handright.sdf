@@ -1,0 +1,1857 @@
+<sdf version='1.9'>
+  <model name='handright9253'>
+    <joint name='fixed' type='fixed'>
+      <pose relative_to='__model__'>0.5 0.5 0.5 -1.5707963 0 0</pose>
+      <parent>world</parent>
+      <child>base_link</child>
+    </joint>
+    <link name='base_link'>
+      <pose relative_to='fixed'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0025264 -0.06604699999999999 0.0019598 0 0 0</pose>
+        <mass>0.14143</mass>
+        <inertia>
+          <ixx>0.00012281</ixx>
+          <ixy>2.1710999999999998e-06</ixy>
+          <ixz>1.7709000000000001e-06</ixz>
+          <iyy>8.3831000000000004e-05</iyy>
+          <iyz>-1.655e-06</iyz>
+          <izz>7.6662999999999994e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint01' type='revolute'>
+      <pose relative_to='base_link'>0.00629 -0.056236 -0.02346 0.034907 0 0</pose>
+      <parent>base_link</parent>
+      <child>Link1</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-0.050000000000000003</lower>
+          <upper>0.050000000000000003</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link1'>
+      <pose relative_to='joint01'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0017642 -0.028543 -2.2385e-07 0 0 0</pose>
+        <mass>0.0069754999999999999</mass>
+        <inertia>
+          <ixx>1.9937999999999999e-06</ixx>
+          <ixy>-5.5056e-08</ixy>
+          <ixz>3.3957000000000002e-12</ixz>
+          <iyy>1.4791000000000001e-07</iyy>
+          <iyz>-3.5244000000000001e-11</iyz>
+          <izz>2.0271999999999998e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link1.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link1.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint12' type='prismatic'>
+      <pose relative_to='Link1'>-0.0010813 -0.050714 0 -1.5708 0.54805 -0.02131799999999996</pose>
+      <parent>Link1</parent>
+      <child>Link2</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.01</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link2'>
+      <pose relative_to='joint12'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-1.6261e-10 2.3732e-10 -0.011292 0 0 0</pose>
+        <mass>0.00030665999999999999</mass>
+        <inertia>
+          <ixx>1.4457999999999999e-08</ixx>
+          <ixy>1.5130999999999999e-11</ixy>
+          <ixz>-4.0057999999999999e-16</ixz>
+          <iyy>1.4473999999999999e-08</iyy>
+          <iyz>6.7962999999999996e-16</iyz>
+          <izz>6.5358000000000003e-10</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link2.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link2.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint23' type='revolute'>
+      <pose relative_to='Link2'>0.00046892 0.00076819 -0.0244 -1.5708 0.02131800000000001 2.5935</pose>
+      <parent>Link2</parent>
+      <child>Link3</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link3'>
+      <pose relative_to='joint23'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0031774 0.017383 0.00090008 0 0 0</pose>
+        <mass>0.0042402999999999998</mass>
+        <inertia>
+          <ixx>6.6232000000000002e-07</ixx>
+          <ixy>1.5775000000000001e-08</ixy>
+          <ixz>1.8781999999999998e-12</ixz>
+          <iyy>2.1145999999999999e-07</iyy>
+          <iyz>5.0670000000000001e-12</iyz>
+          <izz>6.9398000000000002e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link3.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link3.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint34' type='revolute'>
+      <pose relative_to='Link3'>0.0070171 0.037468 -0.00215 0 0 0</pose>
+      <parent>Link3</parent>
+      <child>Link4</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.7</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link4'>
+      <pose relative_to='joint34'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0019697 0.019589 0.00305 0 0 0</pose>
+        <mass>0.0045683</mass>
+        <inertia>
+          <ixx>7.6110999999999996e-07</ixx>
+          <ixy>-8.7637000000000006e-08</ixy>
+          <ixz>-4.2766000000000002e-13</ixz>
+          <iyy>9.6076000000000006e-08</iyy>
+          <iyz>-1.2084999999999999e-12</iyz>
+          <izz>7.8179000000000001e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link4_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link4.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link4_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link4.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint011' type='revolute'>
+      <pose relative_to='base_link'>0.00629 -0.05655 -0.00695 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>Link11</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-0.050000000000000003</lower>
+          <upper>0.050000000000000003</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link11'>
+      <pose relative_to='joint011'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0017767 -0.028542 -2.303e-07 0 0 0</pose>
+        <mass>0.0069754999999999999</mass>
+        <inertia>
+          <ixx>1.9937000000000001e-06</ixx>
+          <ixy>-5.5869000000000002e-08</ixy>
+          <ixz>3.0637e-12</ixz>
+          <iyy>1.4796000000000001e-07</iyy>
+          <iyz>-3.5748000000000002e-11</iyz>
+          <izz>2.0271999999999998e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link11_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link11.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link11_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link11.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint1112' type='prismatic'>
+      <pose relative_to='Link11'>-0.0011031 -0.050343 -0.018279 0.02175799999999983 1.535900000000003 1.5708</pose>
+      <parent>Link11</parent>
+      <child>Link12</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.01</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link12'>
+      <pose relative_to='joint1112'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.018674 6.5223e-06 -0.010992 0 0 0</pose>
+        <mass>0.00030665999999999999</mass>
+        <inertia>
+          <ixx>1.4466e-08</ixx>
+          <ixy>-1.8286000000000001e-14</ixy>
+          <ixz>-4.8223999999999998e-10</ixz>
+          <iyy>1.4448999999999999e-08</iyy>
+          <iyz>1.8406e-13</iyz>
+          <izz>6.7042000000000005e-10</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link12_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link12.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link12_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link12.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint1213' type='revolute'>
+      <pose relative_to='Link12'>-0.018232 0 -0.024124 -1.5359 0.02175799999999991 1.5708</pose>
+      <parent>Link12</parent>
+      <child>Link13</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link13'>
+      <pose relative_to='joint1213'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0030737 0.017402 0.00090013 0 0 0</pose>
+        <mass>0.0042402999999999998</mass>
+        <inertia>
+          <ixx>6.6211000000000004e-07</ixx>
+          <ixy>1.8460999999999999e-08</ixy>
+          <ixz>1.798e-12</ixz>
+          <iyy>2.1166999999999999e-07</iyy>
+          <iyz>6.6567999999999997e-12</iyz>
+          <izz>6.9396999999999996e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link13_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link13.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link13_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link13.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint1314' type='revolute'>
+      <pose relative_to='Link13'>0.0067937 0.037509 -0.00215 0 0 0</pose>
+      <parent>Link13</parent>
+      <child>Link14</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link14'>
+      <pose relative_to='joint1314'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.001921 0.020796 0.00305 0 0 0</pose>
+        <mass>0.0050396</mass>
+        <inertia>
+          <ixx>9.5821999999999991e-07</ixx>
+          <ixy>-1.1424999999999999e-07</ixy>
+          <ixz>-2.4865999999999999e-12</ixz>
+          <iyy>1.0646e-07</iyy>
+          <iyz>-5.9101e-12</iyz>
+          <izz>9.8384000000000005e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link14_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link14.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link14_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link14.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint015' type='revolute'>
+      <pose relative_to='base_link'>-0.00546 -0.13228 -0.01095 0 0 -3.141585307179587</pose>
+      <parent>base_link</parent>
+      <child>Link15</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link15'>
+      <pose relative_to='joint015'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0039265 0.015726 0.004 0 0 0</pose>
+        <mass>0.00031561000000000002</mass>
+        <inertia>
+          <ixx>4.8649000000000001e-08</ixx>
+          <ixy>1.1992000000000001e-08</ixy>
+          <ixz>-3.8313000000000002e-23</ixz>
+          <iyy>3.789e-09</iyy>
+          <iyz>1.508e-22</iyz>
+          <izz>5.1995999999999998e-08</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link15_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link15.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link15_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link15.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint021' type='revolute'>
+      <pose relative_to='base_link'>0.00629 -0.056157 0.008063300000000001 -0.05236 0 0</pose>
+      <parent>base_link</parent>
+      <child>Link21</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.050000000000000003</lower>
+          <upper>0.050000000000000003</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link21'>
+      <pose relative_to='joint021'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0017767 -0.028542 -2.2887e-07 0 0 0</pose>
+        <mass>0.0069754999999999999</mass>
+        <inertia>
+          <ixx>1.9937000000000001e-06</ixx>
+          <ixy>-5.5869000000000002e-08</ixy>
+          <ixz>3.0572999999999999e-12</ixz>
+          <iyy>1.4796000000000001e-07</iyy>
+          <iyz>-3.5751000000000001e-11</iyz>
+          <izz>2.0271999999999998e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link21_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link21.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link21_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link21.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint2122' type='prismatic'>
+      <pose relative_to='Link21'>-0.0011031 -0.050688 0 1.570799999999952 1.56970000000022 3.119799999999953</pose>
+      <parent>Link21</parent>
+      <child>Link22</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.01</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link22'>
+      <pose relative_to='joint2122'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>7.7552e-11 1.8671e-10 -0.011292 0 0 0</pose>
+        <mass>0.00030665999999999999</mass>
+        <inertia>
+          <ixx>1.4483e-08</ixx>
+          <ixy>-3.7658000000000001e-14</ixy>
+          <ixz>1.8278000000000001e-16</ixz>
+          <iyy>1.4448999999999999e-08</iyy>
+          <iyz>5.5180000000000001e-16</iyz>
+          <izz>6.5358000000000003e-10</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link22_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link22.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link22_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link22.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint2223' type='revolute'>
+      <pose relative_to='Link22'>0.0009 0 -0.0244 -1.5708 0.02175800000000007 1.5697</pose>
+      <parent>Link22</parent>
+      <child>Link23</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link23'>
+      <pose relative_to='joint2223'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0030737 0.017402 0.00090015 0 0 0</pose>
+        <mass>0.0042402999999999998</mass>
+        <inertia>
+          <ixx>6.6211000000000004e-07</ixx>
+          <ixy>1.8460999999999999e-08</ixy>
+          <ixz>1.5739e-12</ixz>
+          <iyy>2.1166999999999999e-07</iyy>
+          <iyz>6.6325999999999998e-12</iyz>
+          <izz>6.9396999999999996e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link23_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link23.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link23_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link23.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint2324' type='revolute'>
+      <pose relative_to='Link23'>0.0067937 0.037509 -0.00215 0 0 0</pose>
+      <parent>Link23</parent>
+      <child>Link24</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.7</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link24'>
+      <pose relative_to='joint2324'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0021753 0.019567 0.00305 0 0 0</pose>
+        <mass>0.0045683</mass>
+        <inertia>
+          <ixx>7.6285999999999999e-07</ixx>
+          <ixy>-8.0634999999999994e-08</ixy>
+          <ixz>-6.1734999999999999e-13</ixz>
+          <iyy>9.4310000000000002e-08</iyy>
+          <iyz>-5.5494999999999997e-13</iyz>
+          <izz>7.8176999999999999e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link24_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link24.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link24_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link24.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint025' type='revolute'>
+      <pose relative_to='base_link'>-0.00546 -0.13199 0.0080321 0.05235999999999999 -2.646977960169689e-23 3.141585307179587</pose>
+      <parent>base_link</parent>
+      <child>Link25</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link25'>
+      <pose relative_to='joint025'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0039265 0.015726 0.004 0 0 0</pose>
+        <mass>0.00031561000000000002</mass>
+        <inertia>
+          <ixx>4.8649000000000001e-08</ixx>
+          <ixy>1.1992000000000001e-08</ixy>
+          <ixz>-1.2563e-23</ixz>
+          <iyy>3.789e-09</iyy>
+          <iyz>5.4142000000000005e-23</iyz>
+          <izz>5.1995999999999998e-08</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link25_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link25.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link25_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link25.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint031' type='revolute'>
+      <pose relative_to='base_link'>0.00629 -0.054979 0.023035 -0.10472 0 0</pose>
+      <parent>base_link</parent>
+      <child>Link31</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.050000000000000003</lower>
+          <upper>0.050000000000000003</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link31'>
+      <pose relative_to='joint031'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0017767 -0.028542 -2.2872e-07 0 0 0</pose>
+        <mass>0.0069754999999999999</mass>
+        <inertia>
+          <ixx>1.9937000000000001e-06</ixx>
+          <ixy>-5.5869000000000002e-08</ixy>
+          <ixz>3.0494999999999999e-12</ixz>
+          <iyy>1.4796000000000001e-07</iyy>
+          <iyz>-3.5733000000000002e-11</iyz>
+          <izz>2.0271999999999998e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link31_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link31.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link31_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link31.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint3132' type='prismatic'>
+      <pose relative_to='Link31'>-0.0011031 -0.050688 0 1.570799999999998 1.568500000000058 3.119799999999991</pose>
+      <parent>Link31</parent>
+      <child>Link32</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.01</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link32'>
+      <pose relative_to='joint3132'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>2.6333e-10 5.3616e-10 -0.011292 0 0 0</pose>
+        <mass>0.00030665999999999999</mass>
+        <inertia>
+          <ixx>1.4483e-08</ixx>
+          <ixy>-7.6671e-14</ixy>
+          <ixz>1.0317999999999999e-15</ixz>
+          <iyy>1.4448999999999999e-08</iyy>
+          <iyz>1.2339999999999999e-15</iyz>
+          <izz>6.5358000000000003e-10</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link32_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link32.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link32_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link32.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint3233' type='revolute'>
+      <pose relative_to='Link32'>0.0009 0 -0.0244 -1.5708 0.02175800000000018 1.5685</pose>
+      <parent>Link32</parent>
+      <child>Link33</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.7</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link33'>
+      <pose relative_to='joint3233'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0030737 0.017402 0.00090014 0 0 0</pose>
+        <mass>0.0042402999999999998</mass>
+        <inertia>
+          <ixx>6.6211000000000004e-07</ixx>
+          <ixy>1.8460999999999999e-08</ixy>
+          <ixz>1.6126e-12</ixz>
+          <iyy>2.1166999999999999e-07</iyy>
+          <iyz>6.6784999999999999e-12</iyz>
+          <izz>6.9398000000000002e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link33_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link33.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link33_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link33.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint3334' type='revolute'>
+      <pose relative_to='Link33'>0.0067937 0.037509 -0.00215 0 0 0</pose>
+      <parent>Link33</parent>
+      <child>Link34</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.7</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link34'>
+      <pose relative_to='joint3334'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0024748 0.016203 0.0030531 0 0 0</pose>
+        <mass>0.0035996000000000001</mass>
+        <inertia>
+          <ixx>4.3912999999999999e-07</ixx>
+          <ixy>-4.1418000000000001e-08</ixy>
+          <ixz>3.7168999999999997e-11</ixz>
+          <iyy>7.0246999999999994e-08</iyy>
+          <iyz>-5.8611999999999996e-11</iyz>
+          <izz>4.4867000000000001e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link34_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link34.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link34_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link34.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint035' type='revolute'>
+      <pose relative_to='base_link'>-0.00546 -0.13071 0.026973 0.10472 5.293955920339377e-23 3.141585307179587</pose>
+      <parent>base_link</parent>
+      <child>Link35</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link35'>
+      <pose relative_to='joint035'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0039265 0.015726 0.004 0 0 0</pose>
+        <mass>0.00031561000000000002</mass>
+        <inertia>
+          <ixx>4.8649000000000001e-08</ixx>
+          <ixy>1.1992000000000001e-08</ixy>
+          <ixz>-6.4105999999999997e-24</ixz>
+          <iyy>3.789e-09</iyy>
+          <iyz>2.8150000000000001e-23</iyz>
+          <izz>5.1995999999999998e-08</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link35_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link35.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link35_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link35.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint041' type='revolute'>
+      <pose relative_to='base_link'>-0.01096 -0.06025 0.02985 -1.5708 -0.008950400000000004 3.141585307179587</pose>
+      <parent>base_link</parent>
+      <child>Link41</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-0.02</lower>
+          <upper>0.02</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link41'>
+      <pose relative_to='joint041'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>3.252e-10 0.022007 0.0065979 0 0 0</pose>
+        <mass>0.0092960999999999998</mass>
+        <inertia>
+          <ixx>1.5207999999999999e-06</ixx>
+          <ixy>-4.4798000000000003e-14</ixy>
+          <ixz>1.7935000000000001e-14</ixz>
+          <iyy>5.5580000000000004e-07</iyy>
+          <iyz>-8.9664000000000001e-08</iyz>
+          <izz>1.1427000000000001e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link41_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link41.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link41_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link41.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4142' type='prismatic'>
+      <pose relative_to='Link41'>0 0.027687 0 1.5708 0 0</pose>
+      <parent>Link41</parent>
+      <child>Link42</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.01</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link42'>
+      <pose relative_to='joint4142'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>5.0532e-09 -1.4449e-09 -0.011425 0 0 0</pose>
+        <mass>0.00016153000000000001</mass>
+        <inertia>
+          <ixx>7.1494000000000001e-09</ixx>
+          <ixy>4.622e-16</ixy>
+          <ixz>6.0061999999999997e-15</ixz>
+          <iyy>7.1770000000000003e-09</iyy>
+          <iyz>-1.7585000000000001e-15</iyz>
+          <izz>2.3369999999999998e-10</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link42_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link42.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link42_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link42.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4243' type='revolute'>
+      <pose relative_to='Link42'>0 -0.0026 -0.01955 -1.570800000000007 -1.561800000000025 6.170507285125855e-15</pose>
+      <parent>Link42</parent>
+      <child>Link43</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.2</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link43'>
+      <pose relative_to='joint4243'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0078715 0.0065154 0.00388 0 0 0</pose>
+        <mass>0.0018868999999999999</mass>
+        <inertia>
+          <ixx>5.8159999999999999e-08</ixx>
+          <ixy>1.4539e-08</ixy>
+          <ixz>4.4910000000000003e-09</ixz>
+          <iyy>7.9161000000000003e-08</iyy>
+          <iyz>-1.8727e-09</iyz>
+          <izz>6.7433000000000006e-08</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link43_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link43.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link43_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link43.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4344' type='revolute'>
+      <pose relative_to='Link43'>-0.012782 0.013348 0.0022 1.5708 0 2.8587</pose>
+      <parent>Link43</parent>
+      <child>Link44</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-0.5</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link44'>
+      <pose relative_to='joint4344'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.021932 0.012785 -0.0047886 0 0 0</pose>
+        <mass>0.0066074999999999997</mass>
+        <inertia>
+          <ixx>1.5686999999999999e-06</ixx>
+          <ixy>-7.8296000000000002e-07</ixy>
+          <ixz>8.9143999999999997e-10</ixz>
+          <iyy>1.7352999999999999e-06</iyy>
+          <iyz>-1.0190999999999999e-09</iyz>
+          <izz>2.7860000000000001e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link44_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link44.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link44_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link44.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4445' type='revolute'>
+      <pose relative_to='Link44'>0.0083049 -0.0034513 -0.00475 -2.9863 -6.938893903907228e-18 0.5686</pose>
+      <parent>Link44</parent>
+      <child>Link45</child>
+      <axis>
+        <xyz>0 -0.15464 -0.98797</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.40000000000000002</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link45'>
+      <pose relative_to='joint4445'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.02194 -0.0065438 0.0010242 0 0 0</pose>
+        <mass>0.0092256000000000005</mass>
+        <inertia>
+          <ixx>5.5097000000000002e-07</ixx>
+          <ixy>8.8638000000000003e-08</ixy>
+          <ixz>-1.3873e-08</ixz>
+          <iyy>1.1404999999999999e-06</iyy>
+          <iyz>5.7236999999999998e-08</iyz>
+          <izz>1.4973e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link45_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link45.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link45_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link45.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4546' type='prismatic'>
+      <pose relative_to='Link45'>0.02428 0 0 1.570800000000001 1.415500000000002 -1.570799999999999</pose>
+      <parent>Link45</parent>
+      <child>Link46</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.01</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link46'>
+      <pose relative_to='joint4546'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-5.7515e-13 -6.7503e-13 -0.01215 0 0 0</pose>
+        <mass>0.00017548999999999999</mass>
+        <inertia>
+          <ixx>8.3802999999999993e-09</ixx>
+          <ixy>-5.9201000000000003e-16</ixy>
+          <ixz>-6.9351000000000004e-19</ixz>
+          <iyy>8.3341000000000008e-09</iyy>
+          <iyz>4.8264999999999999e-19</iyz>
+          <izz>2.4208000000000001e-10</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link46_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link46.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link46_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link46.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4647' type='revolute'>
+      <pose relative_to='Link46'>0.001 0 -0.0223 -1.5708 -1.0022 1.5708</pose>
+      <parent>Link46</parent>
+      <child>Link47</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.80000000000000004</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link47'>
+      <pose relative_to='joint4647'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0060688 0.011295 0.0009997199999999999 0 0 0</pose>
+        <mass>0.0037847000000000002</mass>
+        <inertia>
+          <ixx>3.6981e-07</ixx>
+          <ixy>9.8581000000000001e-08</ixy>
+          <ixz>-4.7471999999999998e-12</ixz>
+          <iyy>3.2393999999999997e-07</iyy>
+          <iyz>-1.0931000000000001e-12</iyz>
+          <izz>4.6530999999999998e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link47_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link47.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link47_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link47.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4748' type='revolute'>
+      <pose relative_to='Link47'>-0.016763 0.023079 -0.00255 0 0 0</pose>
+      <parent>Link47</parent>
+      <child>Link48</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.2</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link48'>
+      <pose relative_to='joint4748'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0092888 0.0049529 0.0035533 0 0 0</pose>
+        <mass>0.0033441</mass>
+        <inertia>
+          <ixx>1.3631999999999999e-07</ixx>
+          <ixy>5.6787999999999999e-08</ixy>
+          <ixz>-9.2801000000000001e-11</ixz>
+          <iyy>1.4051999999999999e-07</iyy>
+          <iyz>1.2283e-10</iyz>
+          <izz>2.0025999999999999e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link48_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link48.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link48_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link48.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4449' type='revolute'>
+      <pose relative_to='Link44'>0.036109 0.035336 -0.0033 -3.141585307179587 0 3.141585307179587</pose>
+      <parent>Link44</parent>
+      <child>Link49</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link49'>
+      <pose relative_to='joint4449'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.017737 0.0022319 0.00145 0 0 0</pose>
+        <mass>0.00021109000000000001</mass>
+        <inertia>
+          <ixx>7.9737999999999999e-10</ixx>
+          <ixy>2.8747e-09</ixy>
+          <ixz>5.6092999999999996e-24</ixz>
+          <iyy>2.5463999999999999e-08</iyy>
+          <iyz>-1.3698e-24</iyz>
+          <izz>2.5965000000000001e-08</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link49_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link49.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link49_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link49.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint4350' type='revolute'>
+      <pose relative_to='Link43'>-0.010085 0.014283 0.010893 1.5708 0 2.8587</pose>
+      <parent>Link43</parent>
+      <child>Link50</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link50'>
+      <pose relative_to='joint4350'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.023451 0.009338600000000001 -0.0005 0 0 0</pose>
+        <mass>0.00031642999999999998</mass>
+        <inertia>
+          <ixx>1.1104e-08</ixx>
+          <ixy>-2.5564e-08</ixy>
+          <ixz>-2.7256000000000001e-22</ixz>
+          <iyy>6.5483000000000005e-08</iyy>
+          <iyz>-1.1853000000000001e-22</iyz>
+          <izz>7.6534000000000002e-08</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link50_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link50.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link50_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link50.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint05' type='revolute'>
+      <pose relative_to='base_link'>-0.00546 -0.13178 -0.030101 -0.034907 2.646977960169689e-23 -3.141585307179587</pose>
+      <parent>base_link</parent>
+      <child>Link5</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='Link5'>
+      <pose relative_to='joint05'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0038588 0.015743 0.004 0 0 0</pose>
+        <mass>0.00031561000000000002</mass>
+        <inertia>
+          <ixx>4.8751999999999999e-08</ixx>
+          <ixy>1.1798000000000001e-08</ixy>
+          <ixz>2.6831999999999997e-23</ixz>
+          <iyy>3.6866000000000001e-09</iyy>
+          <iyz>-1.1225e-22</iyz>
+          <izz>5.1995999999999998e-08</izz>
+        </inertia>
+      </inertial>
+      <collision name='Link5_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link5.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='Link5_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://handright9253/meshes/Link5.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint03' type='revolute'>
+      <pose relative_to='base_link'>0.00028533 -0.1366 -0.030269 -0.034907 0 3.1416</pose>
+      <parent>base_link</parent>
+      <child>Link3</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='0' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint54' type='revolute'>
+      <pose relative_to='Link5'>-0.0078202 0.031648 0.00095 0 0 0</pose>
+      <parent>Link5</parent>
+      <child>Link4</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='2' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint013' type='revolute'>
+      <pose relative_to='base_link'>0.00028533 -0.1371 -0.01095 0 0 3.1416</pose>
+      <parent>base_link</parent>
+      <child>Link13</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='2' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint1514' type='revolute'>
+      <pose relative_to='Link15'>-0.0079562 0.031614 0.00095 0 0 0</pose>
+      <parent>Link15</parent>
+      <child>Link14</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='2' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint023' type='revolute'>
+      <pose relative_to='base_link'>0.00028533 -0.13681 0.0082844 0.05236 0 -3.1416</pose>
+      <parent>base_link</parent>
+      <child>Link23</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='0' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint2524' type='revolute'>
+      <pose relative_to='Link25'>-0.0079562 0.031614 0.00095 0 0 0</pose>
+      <parent>Link25</parent>
+      <child>Link24</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='2' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint033' type='revolute'>
+      <pose relative_to='base_link'>0.00028533 -0.13551 0.027477 0.10472 0 -3.1416</pose>
+      <parent>base_link</parent>
+      <child>Link33</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='0' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint3534' type='revolute'>
+      <pose relative_to='Link35'>-0.0079562 0.031614 0.00095 0 0 0</pose>
+      <parent>Link35</parent>
+      <child>Link34</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='2' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint4948' type='revolute'>
+      <pose relative_to='Link49'>-0.029097 0.003439 -0.0021 0 0 0</pose>
+      <parent>Link49</parent>
+      <child>Link48</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='2' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint4447' type='revolute'>
+      <pose relative_to='Link44'>0.04407 0.034553 0.00245 -3.1416 0 -3.1416</pose>
+      <parent>Link44</parent>
+      <child>Link47</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='2' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint5047' type='revolute'>
+      <pose relative_to='Link50'>0.047358 0.018925 0.0008 -3.1416 0 -3.1416</pose>
+      <parent>Link50</parent>
+      <child>Link47</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='2' effort='50' velocity='1'/>
+    </joint>
+    <joint name='joint043' type='revolute'>
+      <pose relative_to='base_link'>-0.01696 -0.05485 -0.02045 1.5708 -1.5708 0</pose>
+      <parent>base_link</parent>
+      <child>Link43</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+      </axis>
+      <limit lower='-2' upper='2' effort='50' velocity='1'/>
+    </joint>
+    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+      <robotNamespace>/swivel</robotNamespace>
+      <controlPeriod>0.001</controlPeriod>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </model>
+</sdf>

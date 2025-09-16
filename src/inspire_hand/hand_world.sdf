@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="default">
+
+    <!-- Add ground plane (optional, can be removed if you don't want it) -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/Ground Plane</uri>
+    </include>
+
+    <!-- Add sun light (optional, helps visualization) -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/Sun</uri>
+    </include>
+
+    <!-- Include your hand model -->
+    <include>
+      <!-- If you already converted URDF to SDF -->
+      <uri>/home/simzx/workspace/inspire_hand/ros2_inspire_hand/src/inspire_hand_description/inspire_hand/inspire_hand_right.sdf</uri>
+      <name>inspire_hand</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+  </world>
+</sdf>

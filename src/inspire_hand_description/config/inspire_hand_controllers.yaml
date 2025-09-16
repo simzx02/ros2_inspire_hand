@@ -1,0 +1,22 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    inspire_hand_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+      ros__parameters:
+        joints:
+          - thumb_proximal_yaw_joint
+          - thumb_proximal_pitch_joint
+          - index_proximal_joint
+          - middle_proximal_joint
+          - ring_proximal_joint
+          - pinky_proximal_joint
+        command_interfaces:
+          - position
+        state_interfaces:
+          - position
+          - velocity

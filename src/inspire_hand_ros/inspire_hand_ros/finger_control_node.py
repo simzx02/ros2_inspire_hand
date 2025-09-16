@@ -40,8 +40,8 @@ class FingerControlNode(Node):
         try:
             # Define constants
             #Use 200–800 for normal operation. Not good to use full scale 0 -1000.
-            OPEN = 800
-            CLOSE = 200
+            OPEN = 900
+            CLOSE = 0
 
             # Define the hard-coded sequence of finger states
             if not hasattr(self, "sequence"):
@@ -49,13 +49,13 @@ class FingerControlNode(Node):
                 # Thumb is always open (index 0)
                 # Index finger = joint 1, middle = 2, ring = 3, little = 4, wrist/extra = 5
                 self.sequence = [
-                    [CLOSE, OPEN, OPEN, OPEN, OPEN, OPEN],  # 4th finger closed
-                    [OPEN, CLOSE, OPEN, OPEN, OPEN, OPEN], # 3rd finger closed
-                    [OPEN, OPEN, CLOSE, OPEN, OPEN, OPEN], # 2nd finger closed
-                    [OPEN, OPEN, OPEN, CLOSE, OPEN, OPEN], # 1st finger closed
-                    [OPEN, OPEN, OPEN, OPEN, CLOSE, OPEN], # thumb closed
-                    [OPEN, OPEN, OPEN, OPEN, OPEN, CLOSE],  # thumb move to center
-                    [OPEN, OPEN, OPEN, OPEN, OPEN, OPEN],  # open all again
+                #    [CLOSE, OPEN, OPEN, OPEN, OPEN, OPEN],  # 4th finger closed
+                #    [OPEN, CLOSE, OPEN, OPEN, OPEN, OPEN], # 3rd finger closed
+                #    [OPEN, OPEN, CLOSE, OPEN, OPEN, OPEN], # 2nd finger closed
+                #    [OPEN, OPEN, OPEN, CLOSE, OPEN, OPEN], # 1st finger closed
+                #    [OPEN, OPEN, OPEN, OPEN, CLOSE, OPEN], # thumb closed
+                    [CLOSE, OPEN, OPEN, OPEN, OPEN, CLOSE],  # thumb move to center
+                #    [OPEN, OPEN, OPEN, OPEN, OPEN, OPEN],  # open all again
                 ]
                 self.seq_idx = 0
 

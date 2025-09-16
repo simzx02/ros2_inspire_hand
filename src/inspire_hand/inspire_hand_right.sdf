@@ -1,0 +1,704 @@
+<sdf version='1.7'>
+  <model name='inspire_hand_right'>
+    <link name='base'>
+      <inertial>
+        <pose>0.002526 -0.001959 0.066047 0 -0 0</pose>
+        <mass>0.14143</mass>
+        <inertia>
+          <ixx>0.00012281</ixx>
+          <ixy>1.77079e-06</ixy>
+          <ixz>2.17108e-06</ixz>
+          <iyy>7.6663e-05</iyy>
+          <iyz>-1.65506e-06</iyz>
+          <izz>8.3832e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_fixed_joint_lump__hand_base_link_collision'>
+        <pose>0 0 0.0136 0 -0 3.14159</pose>
+        <geometry>
+          <cylinder>
+            <length>0.0278</length>
+            <radius>0.028</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name='base_fixed_joint_lump__hand_base_link_collision_1'>
+        <pose>0.0032 0 0.038 -1.57079 -0 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.0391 0.0202 0.0574</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='base_fixed_joint_lump__hand_base_link_collision_2'>
+        <pose>0.0032 0 0.0682 -1.57079 -0 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.0391 0.04 0.0814</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='base_fixed_joint_lump__hand_base_link_collision_3'>
+        <pose>0 1e-06 0.1081 -1.57079 -0 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.0322 0.04 0.0814</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='base_fixed_joint_lump__hand_base_link_collision_4'>
+        <pose>0.0016 -0.030899 0.134 -1.57079 -0 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.0125 0.0111 0.0089</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='base_fixed_joint_lump__hand_base_link_collision_5'>
+        <pose>0.0016 -0.011799 0.134 -1.57079 -0 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.0125 0.0111 0.0089</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='base_fixed_joint_lump__hand_base_link_collision_6'>
+        <pose>0.0016 0.007001 0.134 -1.57079 -0 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.0125 0.0111 0.0089</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='base_fixed_joint_lump__hand_base_link_collision_7'>
+        <pose>0.0016 0.026201 0.134 -1.57079 -0 3.14159</pose>
+        <geometry>
+          <box>
+            <size>0.0125 0.0111 0.0089</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='base_fixed_joint_lump__hand_base_link_visual'>
+        <pose>0 0 0 -1.57079 -0 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_base_link.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='index_proximal_joint' type='revolute'>
+      <pose relative_to='base'>-0.000285 0.032269 0.13653 1.6057 -0 3.14159</pose>
+      <parent>base</parent>
+      <child>index_proximal</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.47</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='index_proximal'>
+      <pose relative_to='index_proximal_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.001226 0.011942 -0.006 0 -0 0</pose>
+        <mass>0.0042403</mass>
+        <inertia>
+          <ixx>6.6232e-07</ixx>
+          <ixy>-1.5775e-08</ixy>
+          <ixz>1.8515e-12</ixz>
+          <iyy>2.1146e-07</iyy>
+          <iyz>-5.0828e-12</iyz>
+          <izz>6.9398e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='index_proximal_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_index_proximal.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='index_proximal_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_index_proximal.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='index_intermediate_joint' type='revolute'>
+      <pose relative_to='index_proximal'>-0.002614 0.032026 -0.001 0 -0 0</pose>
+      <parent>index_proximal</parent>
+      <child>index_intermediate</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.04545</lower>
+          <upper>1.56</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='index_intermediate'>
+      <pose relative_to='index_intermediate_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.00197 0.019589 -0.005 0 -0 0</pose>
+        <mass>0.0045683</mass>
+        <inertia>
+          <ixx>7.6111e-07</ixx>
+          <ixy>8.7637e-08</ixy>
+          <ixz>-3.7751e-13</ixz>
+          <iyy>9.6076e-08</iyy>
+          <iyz>9.9444e-13</iyz>
+          <izz>7.8179e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='index_intermediate_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_index_intermediate.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='index_intermediate_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_index_intermediate.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='middle_proximal_joint' type='revolute'>
+      <pose relative_to='base'>-0.000285 0.012951 0.1371 1.57079 -0 3.14159</pose>
+      <parent>base</parent>
+      <child>middle_proximal</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.47</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='middle_proximal'>
+      <pose relative_to='middle_proximal_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.001297 0.011934 -0.006 0 -0 0</pose>
+        <mass>0.0042403</mass>
+        <inertia>
+          <ixx>6.6211e-07</ixx>
+          <ixy>-1.8461e-08</ixy>
+          <ixz>1.8002e-12</ixz>
+          <iyy>2.1167e-07</iyy>
+          <iyz>-6.6808e-12</iyz>
+          <izz>6.9397e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='middle_proximal_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_index_proximal.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='middle_proximal_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_index_proximal.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='middle_intermediate_joint' type='revolute'>
+      <pose relative_to='middle_proximal'>-0.002423 0.032041 -0.001 0 -0 0</pose>
+      <parent>middle_proximal</parent>
+      <child>middle_intermediate</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.04545</lower>
+          <upper>1.56</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='middle_intermediate'>
+      <pose relative_to='middle_intermediate_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.001921 0.020796 -0.005 0 -0 0</pose>
+        <mass>0.0050396</mass>
+        <inertia>
+          <ixx>9.5822e-07</ixx>
+          <ixy>1.1425e-07</ixy>
+          <ixz>-2.4791e-12</ixz>
+          <iyy>1.0646e-07</iyy>
+          <iyz>5.9173e-12</iyz>
+          <izz>9.8384e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='middle_intermediate_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_middle_intermediate.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='middle_intermediate_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_middle_intermediate.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='pinky_proximal_joint' type='revolute'>
+      <pose relative_to='base'>-0.000285 -0.025487 0.13571 1.46611 -0 3.14159</pose>
+      <parent>base</parent>
+      <child>pinky_proximal</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.47</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='pinky_proximal'>
+      <pose relative_to='pinky_proximal_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.001297 0.011934 -0.006 0 -0 0</pose>
+        <mass>0.0042403</mass>
+        <inertia>
+          <ixx>6.6211e-07</ixx>
+          <ixy>-1.8461e-08</ixy>
+          <ixz>1.6907e-12</ixz>
+          <iyy>2.1167e-07</iyy>
+          <iyz>-6.9334e-12</iyz>
+          <izz>6.9397e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='pinky_proximal_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_index_proximal.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='pinky_proximal_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_index_proximal.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='pinky_intermediate_joint' type='revolute'>
+      <pose relative_to='pinky_proximal'>-0.002423 0.032041 -0.001 0 -0 0</pose>
+      <parent>pinky_proximal</parent>
+      <child>pinky_intermediate</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.04545</lower>
+          <upper>1.56</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='pinky_intermediate'>
+      <pose relative_to='pinky_intermediate_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.002475 0.016203 -0.005003 0 -0 0</pose>
+        <mass>0.0035996</mass>
+        <inertia>
+          <ixx>4.3913e-07</ixx>
+          <ixy>4.1418e-08</ixy>
+          <ixz>3.7168e-11</ixz>
+          <iyy>7.0247e-08</iyy>
+          <iyz>5.8613e-11</iyz>
+          <izz>4.4867e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='pinky_intermediate_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_pinky_intermediate.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='pinky_intermediate_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_pinky_intermediate.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='ring_proximal_joint' type='revolute'>
+      <pose relative_to='base'>-0.000285 -0.006286 0.13691 1.51841 0 3.14159</pose>
+      <parent>base</parent>
+      <child>ring_proximal</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.47</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='ring_proximal'>
+      <pose relative_to='ring_proximal_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.001297 0.011934 -0.006 0 -0 0</pose>
+        <mass>0.0042403</mass>
+        <inertia>
+          <ixx>6.6211e-07</ixx>
+          <ixy>-1.8461e-08</ixy>
+          <ixz>1.5793e-12</ixz>
+          <iyy>2.1167e-07</iyy>
+          <iyz>-6.6868e-12</iyz>
+          <izz>6.9397e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='ring_proximal_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_index_proximal.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='ring_proximal_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_index_proximal.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='ring_intermediate_joint' type='revolute'>
+      <pose relative_to='ring_proximal'>-0.002423 0.032041 -0.001 0 -0 0</pose>
+      <parent>ring_proximal</parent>
+      <child>ring_intermediate</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.04545</lower>
+          <upper>1.56</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='ring_intermediate'>
+      <pose relative_to='ring_intermediate_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.002175 0.019567 -0.005 0 -0 0</pose>
+        <mass>0.0045683</mass>
+        <inertia>
+          <ixx>7.6286e-07</ixx>
+          <ixy>8.0635e-08</ixy>
+          <ixz>-6.1562e-13</ixz>
+          <iyy>9.431e-08</iyy>
+          <iyz>5.8619e-13</iyz>
+          <izz>7.8177e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='ring_intermediate_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_index_intermediate.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='ring_intermediate_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_index_intermediate.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='thumb_proximal_yaw_joint' type='revolute'>
+      <pose relative_to='base'>0.01696 0.02045 0.0691 4e-06 -6e-06 -1.57079</pose>
+      <parent>base</parent>
+      <child>thumb_proximal_base</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.308</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='thumb_proximal_base'>
+      <pose relative_to='thumb_proximal_yaw_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.004806 0.000938 -0.00757 0 -0 0</pose>
+        <mass>0.0018869</mass>
+        <inertia>
+          <ixx>5.816e-08</ixx>
+          <ixy>1.4539e-08</ixy>
+          <ixz>4.491e-09</ixz>
+          <iyy>7.9161e-08</iyy>
+          <iyz>-1.8727e-09</iyz>
+          <izz>6.7433e-08</izz>
+        </inertia>
+      </inertial>
+      <collision name='thumb_proximal_base_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_thumb_proximal_base.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='thumb_proximal_base_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_thumb_proximal_base.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='thumb_proximal_pitch_joint' type='revolute'>
+      <pose relative_to='thumb_proximal_base'>-0.00881 0.010892 -0.00925 1.5708 -0 2.8587</pose>
+      <parent>thumb_proximal_base</parent>
+      <child>thumb_proximal</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.6</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='thumb_proximal'>
+      <pose relative_to='thumb_proximal_pitch_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.021932 0.012785 -0.008039 0 -0 0</pose>
+        <mass>0.0066075</mass>
+        <inertia>
+          <ixx>1.5686e-06</ixx>
+          <ixy>-7.8296e-07</ixy>
+          <ixz>8.9143e-10</ixz>
+          <iyy>1.7353e-06</iyy>
+          <iyz>-1.0191e-09</iyz>
+          <izz>2.786e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='thumb_proximal_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_thumb_proximal.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='thumb_proximal_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_thumb_proximal.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='thumb_intermediate_joint' type='revolute'>
+      <pose relative_to='thumb_proximal'>0.04407 0.034553 -0.0008 0 -0 0</pose>
+      <parent>thumb_proximal</parent>
+      <child>thumb_intermediate</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.8</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='thumb_intermediate'>
+      <pose relative_to='thumb_intermediate_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.009554 -0.001628 -0.0072 0 -0 0</pose>
+        <mass>0.0037847</mass>
+        <inertia>
+          <ixx>3.6981e-07</ixx>
+          <ixy>-9.8581e-08</ixy>
+          <ixz>-4.7469e-12</ixz>
+          <iyy>3.2394e-07</iyy>
+          <iyz>1.0939e-12</iyz>
+          <izz>4.6531e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='thumb_intermediate_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_thumb_intermediate.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='thumb_intermediate_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_thumb_intermediate.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='thumb_distal_joint' type='revolute'>
+      <pose relative_to='thumb_intermediate'>0.020248 0.010156 -0.0012 0 -0 0</pose>
+      <parent>thumb_intermediate</parent>
+      <child>thumb_distal</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.4</upper>
+          <effort>1</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='thumb_distal'>
+      <pose relative_to='thumb_distal_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.009289 0.004953 -0.006003 0 -0 0</pose>
+        <mass>0.0033441</mass>
+        <inertia>
+          <ixx>1.3632e-07</ixx>
+          <ixy>-5.6788e-08</ixy>
+          <ixz>-9.2764e-11</ixz>
+          <iyy>1.4052e-07</iyy>
+          <iyz>-1.2283e-10</iyz>
+          <izz>2.0026e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name='thumb_distal_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/collision/right_thumb_distal.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='thumb_distal_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>meshes/visual/right_thumb_distal.glb</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

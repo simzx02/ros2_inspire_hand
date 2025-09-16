@@ -1,0 +1,37 @@
+swivel:
+    # Publish all joint states -----------------------------------
+  swiveljoint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  swiveljoint1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint12
+    pid: {p: 200.0, i: 100, d: 50.0}
+    
+  swiveljoint2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint1112
+    pid: {p: 200.0, i: 100, d: 50.0}
+    
+  swiveljoint3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint2122
+    pid: {p: 200.0, i: 100, d: 50.0}
+    
+  swiveljoint4_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint3132
+    pid: {p: 200.0, i: 100, d: 50.0}
+    
+  swiveljoint5_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint4142
+    pid: {p: 200.0, i: 100, d: 50.0}
+    
+  swiveljoint6_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint4546
+    pid: {p: 200.0, i: 100.0, d: 20.0}
+
