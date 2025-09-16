@@ -26,6 +26,7 @@ setup(
             'finger_control_node = inspire_hand_ros.finger_control_node:main',
             'pick_object_node = inspire_hand_ros.pick_object_node:main',
             'pick_object_node_logger = inspire_hand_ros.pick_object_node_logger:main',
+            'pick_object_node_logger_pid = inspire_hand_ros.pick_object_node_logger_pid:main',
             
         ],
     },

@@ -82,7 +82,7 @@ if __name__ == '__main__':
             # print("Publish success. msg:", cmd.crc)
             pass
         else:
-            print("Waitting for subscriber.")
+            print("Waiting for subscriber.")
 
         time.sleep(0.1)
         
