@@ -29,7 +29,7 @@ class InspireHandNode(Node):
             LR='r',
             device_id=1,
             use_serial=True,
-            serial_port='/dev/my_inspire_hand',
+            serial_port='/dev/ttyUSB0',
             states_structure=self.states_structure
         )
         
