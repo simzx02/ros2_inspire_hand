@@ -23,7 +23,7 @@ def main():
 
     # Define motion sequence (only one frame for now)
     sequence = [
-        [900, 900, 900, 900, 900, 900],  
+        [100, 900, 900, 900, 900, 900],  
     ]
 
     rate = rospy.Rate(10)  # 10 Hz (0.1s)

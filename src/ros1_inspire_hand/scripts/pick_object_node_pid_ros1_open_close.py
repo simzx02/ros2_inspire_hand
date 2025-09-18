@@ -45,8 +45,7 @@ class PickObjectNode:
         rospy.spin()  # Keep the node alive and listening for commands
 
     def reset_grip_data(self):
-        """Reset all the grip data variables to their initial state."""
-        self.current_angles = [850] * 6
+        """Reset grip variables and initialize current angles from the robot."""
         self.min_angle = 100
         self.step_size = 10
         self.reached = [False] * 6
@@ -54,6 +53,18 @@ class PickObjectNode:
         self.final_angles = [None] * 6
         self.peak_forces = [0.0] * 6
         self.finger_times = [0.0] * 6
+
+        # Try reading the current angles from the robot
+        state_r = self.subr.Read(0.1)
+        if state_r is not None and hasattr(state_r, "angle_act"):
+            self.current_angles = list(state_r.angle_act)
+            rospy.loginfo(f"Initialized current angles from robot state: {self.current_angles}")
+        else:
+            # Fallback to default open angles on first run or error
+            self.current_angles = [850] * 6
+            rospy.logwarn("Failed to read current angles from robot; defaulting to 850.")
+
+
 
     def open_all_fingers(self, speed=350):
         """
@@ -176,3 +187,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+##rostopic pub --once /finger_command std_msgs/String "close" or open
