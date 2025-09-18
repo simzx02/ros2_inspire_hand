@@ -25,6 +25,7 @@ install(PROGRAMS
   scripts/pick_object_node_pid_ros1.py
   scripts/visualizer_ros1.py
   scripts/open_finger.py
+  scripts/pick_object_node_pid_ros1_open_close.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

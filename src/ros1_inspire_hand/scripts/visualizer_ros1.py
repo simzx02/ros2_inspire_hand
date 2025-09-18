@@ -11,7 +11,6 @@ from PyQt5.QtCore import QTimer
 
 
 class DDSHandler:
-   
     def __init__(self, network=None, sub_touch=True, LR='r'):
         rospy.init_node('inspire_hand_visualizer_node', anonymous=True)
         
@@ -100,9 +99,12 @@ def main(args=None):
         
     # Timer to process ROS events within Qt event loop
     timer = QTimer()
-    timer.timeout.connect(lambda: rospy.spin_once())  # ROS1 spin once in the Qt loop
-    timer.start(10)  # Process ROS events every 10ms
+    
+    # Connect to method that manually handles the ROS event loop
+    timer.timeout.connect(lambda: rospy.sleep(0.1))  # Process ROS events every 100ms
         
+    timer.start(10)  # Timer interval set to 10ms
+    
     # Start Qt event loop
     app_exec_result = app.exec_()
         

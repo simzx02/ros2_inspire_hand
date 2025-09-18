@@ -58,6 +58,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/user_dell02/simzx_ws/ros1_inspire_hand/src/ros1_inspire_hand/scripts/pick_object_node_pid_ros1.py"
     "/home/user_dell02/simzx_ws/ros1_inspire_hand/src/ros1_inspire_hand/scripts/visualizer_ros1.py"
     "/home/user_dell02/simzx_ws/ros1_inspire_hand/src/ros1_inspire_hand/scripts/open_finger.py"
+    "/home/user_dell02/simzx_ws/ros1_inspire_hand/src/ros1_inspire_hand/scripts/pick_object_node_pid_ros1_open_close.py"
     )
 endif()
 
