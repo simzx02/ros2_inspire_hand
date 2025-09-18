@@ -1,0 +1,8 @@
+prefix=/home/user_dell02/simzx_ws/ros1_inspire_hand/devel
+
+Name: ros1_inspire_hand
+Description: Description of ros1_inspire_hand
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs
