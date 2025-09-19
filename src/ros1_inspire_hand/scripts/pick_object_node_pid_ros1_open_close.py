@@ -46,7 +46,7 @@ class PickObjectNode:
 
     def reset_grip_data(self):
         """Reset grip variables and initialize current angles from the robot."""
-        self.min_angle = 100
+        self.min_angle = 50
         self.step_size = 10
         self.reached = [False] * 6
         self.final_forces = [0.0] * 6
