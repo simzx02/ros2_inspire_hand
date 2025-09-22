@@ -96,7 +96,7 @@ class PickObjectNode:
         start_time = time.time()  # Record the start time of the closing process
 
         # PID parameters
-        Kp = 1  # Proportional gain
+        Kp = 5  # Proportional gain
         Ki = 0.05  # Integral gain
         Kd = 0.05  # Derivative gain
 
@@ -132,7 +132,7 @@ class PickObjectNode:
 
                     # Calculate dynamic step size using PID control
                     step_size = int(Kp * error + Ki * integral[i] + Kd * derivative)
-                    step_size = max(self.step_size, min(step_size, 50))  # Clamp step size between self.step_size and 50
+                    step_size = max(self.step_size, min(step_size, 70))  # Clamp step size between self.step_size and 50
 
                     # Dynamically adjust speed based on proximity to the threshold
                     speed = max(150, 500 - abs(error))  # Higher speed for larger errors, slower as error decreases
@@ -162,8 +162,7 @@ class PickObjectNode:
         for i in range(6):
             stop_angle = self.final_angles[i] if self.final_angles[i] is not None else self.current_angles[i]
             rospy.loginfo(
-                f"Finger {i+1}: {self.peak_forces[i]:.1f} g "
-                f"(limit {self.force_limits[i]} g), stop angle: {stop_angle}"
+                f"Finger {i+1}: Stop Angle: {stop_angle}"
             )
 
     def command_callback(self, msg):
