@@ -10,19 +10,21 @@ class InspireHandNode:
         # Initialize the ROS node
         rospy.init_node('headless_driver_node')
 
-        # Create publishers
+        # Create publishers - matching the actual data structure
         self.angle_pub = rospy.Publisher('inspire_hand/angle', Float32MultiArray, queue_size=10)
         self.force_pub = rospy.Publisher('inspire_hand/force', Float32MultiArray, queue_size=10)
         self.status_pub = rospy.Publisher('inspire_hand/status', Float32MultiArray, queue_size=10)
-        self.current_pub = rospy.Publisher('inspire_hand/current', Float32MultiArray, queue_size=10)  # New publisher
-        self.speed_pub = rospy.Publisher('inspire_hand/speed', Float32MultiArray, queue_size=10)    # New publisher
+        self.current_pub = rospy.Publisher('inspire_hand/current', Float32MultiArray, queue_size=10)
+        self.pos_pub = rospy.Publisher('inspire_hand/position', Float32MultiArray, queue_size=10)
+        self.temp_pub = rospy.Publisher('inspire_hand/temperature', Float32MultiArray, queue_size=10)
+        self.error_pub = rospy.Publisher('inspire_hand/error', Float32MultiArray, queue_size=10)
 
         # Define the structure for the hand data
         self.states_structure = [
             ('angle_act', 1546, 6, 'short'),
             ('force_act', 1582, 6, 'short'),
             ('status', 1612, 3, 'byte'),
-            ('current', 1594, 6, 'short')  # New state for current
+            ('current', 1594, 6, 'short')
         ]
     
         # Initialize the hand interface
@@ -48,47 +50,80 @@ class InspireHandNode:
             self.call_count += 1
 
             if data_dict is None:
-                raise Exception("Failed to read data from hand")
+                rospy.logwarn_throttle(5.0, "handler.read() returned None")
+                return
 
-            # Publish angle data
-            if 'angle_act' in data_dict:
+            # Check if 'states' key exists
+            if 'states' not in data_dict:
+                rospy.logwarn_throttle(5.0, "No 'states' key in data_dict")
+                return
+
+            states = data_dict['states']
+            published_count = 0
+            
+            # Publish angle data (ANGLE_ACT key, uppercase)
+            if 'ANGLE_ACT' in states:
                 angle_msg = Float32MultiArray()
-                angle_msg.data = [float(x) for x in data_dict['angle_act']]
+                angle_msg.data = [float(x) for x in states['ANGLE_ACT']]
                 self.angle_pub.publish(angle_msg)
-
-            # Publish force data
-            if 'force_act' in data_dict:
+                published_count += 1
+            
+            # Publish force data (FORCE_ACT key, uppercase)
+            if 'FORCE_ACT' in states:
                 force_msg = Float32MultiArray()
-                force_msg.data = [float(x) for x in data_dict['force_act']]
+                force_msg.data = [float(x) for x in states['FORCE_ACT']]
                 self.force_pub.publish(force_msg)
-
-            # Publish status data
-            if 'status' in data_dict:
+                published_count += 1
+            
+            # Publish status data (STATUS key, uppercase)
+            if 'STATUS' in states:
                 status_msg = Float32MultiArray()
-                status_msg.data = [float(x) for x in data_dict['status']]
+                status_msg.data = [float(x) for x in states['STATUS']]
                 self.status_pub.publish(status_msg)
-
-            # Publish current data (new)
-            if 'current' in data_dict:
+                published_count += 1
+            
+            # Publish current data (CURRENT key, uppercase)
+            if 'CURRENT' in states:
                 current_msg = Float32MultiArray()
-                current_msg.data = [float(x) for x in data_dict['current']]
+                current_msg.data = [float(x) for x in states['CURRENT']]
                 self.current_pub.publish(current_msg)
+                published_count += 1
+            
+            # Publish position data (POS_ACT key)
+            if 'POS_ACT' in states:
+                pos_msg = Float32MultiArray()
+                pos_msg.data = [float(x) for x in states['POS_ACT']]
+                self.pos_pub.publish(pos_msg)
+                published_count += 1
+            
+            # Publish temperature data (TEMP key)
+            if 'TEMP' in states:
+                temp_msg = Float32MultiArray()
+                temp_msg.data = [float(x) for x in states['TEMP']]
+                self.temp_pub.publish(temp_msg)
+                published_count += 1
+            
+            # Publish error data (ERROR key)
+            if 'ERROR' in states:
+                error_msg = Float32MultiArray()
+                error_msg.data = [float(x) for x in states['ERROR']]
+                self.error_pub.publish(error_msg)
+                published_count += 1
 
             # Log statistics every second
-            if self.call_count % 100 == 0:  # Every 100 calls (approximately 1 second)
+            if self.call_count % 100 == 0:
                 elapsed_time = time.perf_counter() - self.start_time
                 frequency = self.call_count / elapsed_time
                 rospy.loginfo(
-                    f'Current frequency: {frequency:.2f} Hz, '
-                    f'Calls: {self.call_count/100}, '
-                    f'Elapsed Time: {elapsed_time:.2f} s'
+                    f'Frequency: {frequency:.2f} Hz | '
+                    f'Calls: {self.call_count} | '
+                    f'Published: {published_count} topics | '
                 )
 
         except Exception as e:
-            rospy.logerr(f'Error reading hand data: {str(e)}')
-            if 'data_dict' in locals():
-                rospy.logerr(f'Available data keys: {data_dict.keys() if data_dict else "None"}')
-                rospy.logerr(f'Data content: {data_dict}')
+            rospy.logerr(f'Error in timer callback: {str(e)}')
+            import traceback
+            rospy.logerr(traceback.format_exc())
 
 def main():
     node = InspireHandNode()
@@ -100,8 +135,8 @@ def main():
         frequency = node.call_count / elapsed_time if elapsed_time > 0 else 0
         rospy.loginfo(
             f'Node shutting down. '
-            f'Total calls: {node.call_count/100}, '
-            f'Total elapsed time: {elapsed_time:.2f} s, '
+            f'Total calls: {node.call_count}, '
+            f'Total time: {elapsed_time:.2f}s, '
             f'Final frequency: {frequency:.2f} Hz'
         )
     finally:

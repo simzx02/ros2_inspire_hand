@@ -37,7 +37,7 @@ class PickObjectNode:
         # Grip parameters
         self.current_angles = [850] * 6
         self.min_angle = 100
-        self.step_size = 10
+        self.step_size = 5
         self.reached = [False] * 6
         self.final_forces = [0.0] * 6
         self.final_angles = [None] * 6

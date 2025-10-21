@@ -22,10 +22,11 @@ include_directories(
 # Install Python scripts
 install(PROGRAMS
   scripts/driver_ros1.py
-  scripts/pick_object_node_pid_ros1.py
+  scripts/archive_examples/pick_object_node_pid_ros1.py
   scripts/visualizer_ros1.py
-  scripts/open_finger.py
-  scripts/pick_object_node_pid_ros1_open_close.py
+  scripts/archive_examples/open_finger.py
+  scripts/archive_examples/pick_object_node_pid_ros1_open_close.py
+  srcipts/grip.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

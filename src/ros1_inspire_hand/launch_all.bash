@@ -13,7 +13,7 @@ trap cleanup EXIT
 
 # Source ROS
 source /opt/ros/noetic/setup.bash
-source ~/simzx_ws/ros1_inspire_hand/devel/setup.bash
+source ~/Desktop/inspire_hand/ros1_inspire_hand/devel/setup.bash
 
 # Start new tmux session
 tmux new-session -d -s "$SESSION_NAME" "roscore"
