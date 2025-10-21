@@ -28,7 +28,7 @@ class PickObjectNode:
 
         # Control parameters
         self.force_limits = [300] * 6  # Force limit in grams
-        self.min_angle = 0  # Fully closed
+        self.min_angle = 50  # Fully closed
         self.max_angle = 850  # Fully open
         self.open_speed = 350
         self.close_speed = 150
@@ -42,6 +42,7 @@ class PickObjectNode:
         self.data_lock = threading.Lock()
         self.current_angles = [850] * 6
         self.current_forces = [0] * 6
+        self.force_offsets = [0] * 6  # Calibration offsets
         self.data_received = False
 
         # Subscribe to ROS topics
@@ -65,6 +66,12 @@ class PickObjectNode:
         else:
             rospy.logwarn("No sensor data received. Using defaults.")
 
+        # Calibrate force sensors (remove zero-offset)
+        rospy.loginfo("Calibrating force sensors...")
+        time.sleep(0.5)
+        self.calibrate_forces()
+        rospy.loginfo(f"Force offsets: {self.force_offsets}")
+
         # Auto-open fingers on startup
         rospy.loginfo("Auto-opening fingers on startup...")
         self.open_all_fingers()
@@ -79,11 +86,41 @@ class PickObjectNode:
 
     def force_callback(self, msg):
         with self.data_lock:
-            self.current_forces = [int(x) for x in msg.data]
+            raw_forces = [int(x) for x in msg.data]
+            # Apply calibration offset and ensure non-negative
+            self.current_forces = [max(0, raw_forces[i] - self.force_offsets[i]) for i in range(6)]
+
+    def calibrate_forces(self):
+        """Calibrate force sensors to remove zero-offset (baseline readings)."""
+        samples = []
+        for _ in range(10):
+            _, forces = self.get_sensor_data()
+            samples.append(forces)
+            time.sleep(0.05)
+        
+        # Calculate average offset for each finger
+        for i in range(6):
+            avg_offset = sum(sample[i] for sample in samples) / len(samples)
+            self.force_offsets[i] = int(avg_offset)
 
     def get_sensor_data(self):
         with self.data_lock:
             return self.current_angles.copy(), self.current_forces.copy()
+
+    def calibrate_forces(self):
+        """Calibrate force sensors to remove zero-offset (baseline readings)."""
+        samples = []
+        for _ in range(10):
+            with self.data_lock:
+                # Read raw forces before calibration
+                raw_forces = self.current_forces.copy()
+            samples.append(raw_forces)
+            time.sleep(0.05)
+        
+        # Calculate average offset for each finger
+        for i in range(6):
+            avg_offset = sum(sample[i] for sample in samples) / len(samples)
+            self.force_offsets[i] = int(avg_offset)
 
     def open_all_fingers(self):
         """Open all fingers to max angle."""
@@ -111,10 +148,10 @@ class PickObjectNode:
         """
         start_time = time.time()
         
-        # PID parameters
-        Kp = 0.8  # Proportional gain (step size response to error)
-        Ki = 0.02  # Integral gain (accumulates error over time)
-        Kd = 0.1  # Derivative gain (responds to rate of change)
+        # Improved PID parameters for smoother motion
+        Kp = 0.5  # Reduced for gentler response
+        Ki = 0.01  # Reduced to prevent integral windup
+        Kd = 0.15  # Increased for better damping
         
         # Initialize tracking
         reached = [False] * 6
@@ -139,6 +176,10 @@ class PickObjectNode:
         max_iterations = 100
         stabilization_counter = [0] * 6
         
+        # Smoothing: Track velocity to avoid jerky movements
+        velocity = [0.0] * 6
+        max_velocity_change = 30  # Limit acceleration
+        
         while not all(reached) and iteration < max_iterations:
             iteration += 1
             
@@ -149,17 +190,28 @@ class PickObjectNode:
                     force_error = self.force_limits[i] - forces[i]
                     
                     # Update PID terms
-                    integral[i] += force_error * 0.15
-                    integral[i] = max(-500, min(500, integral[i]))  # Anti-windup
+                    integral[i] += force_error * 0.1  # Reduced integration time
+                    integral[i] = max(-300, min(300, integral[i]))  # Tighter anti-windup
                     
-                    derivative = (force_error - previous_error[i]) / 0.15
+                    derivative = (force_error - previous_error[i]) / 0.1
                     previous_error[i] = force_error
                     
                     # Calculate dynamic step size using PID
                     pid_output = Kp * force_error + Ki * integral[i] + Kd * derivative
-                    dynamic_step = int(max(5, min(pid_output, 100)))  # Clamp between 5-100
                     
-                    # Apply step
+                    # Target velocity based on PID
+                    target_velocity = max(3, min(pid_output, 60))  # Clamp between 3-60 (smoother range)
+                    
+                    # Smooth velocity changes (limit acceleration)
+                    velocity_change = target_velocity - velocity[i]
+                    if abs(velocity_change) > max_velocity_change:
+                        velocity_change = max_velocity_change if velocity_change > 0 else -max_velocity_change
+                    
+                    velocity[i] += velocity_change
+                    velocity[i] = max(3, min(velocity[i], 60))  # Keep within bounds
+                    
+                    # Apply smoothed step
+                    dynamic_step = int(velocity[i])
                     command_angles[i] = max(command_angles[i] - dynamic_step, self.min_angle)
             
             # Keep finger 6 fixed
@@ -173,8 +225,8 @@ class PickObjectNode:
             self.cmd.mode = 0b1101  # Angle + force + speed
             self.pubr.Write(self.cmd)
             
-            # Wait for movement
-            time.sleep(0.15)
+            # Shorter wait for more responsive control
+            time.sleep(0.1)
             
             # Read actual state
             actual_angles, actual_forces = self.get_sensor_data()
@@ -208,9 +260,9 @@ class PickObjectNode:
                 if iteration > 5:  # Allow initial movement
                     if hasattr(self, '_prev_angles'):
                         movement = abs(actual_angles[i] - self._prev_angles[i])
-                        if movement < 3:  # Less than 3 degrees movement
+                        if movement < 2:  # Less than 2 degrees movement (tighter tolerance)
                             stabilization_counter[i] += 1
-                            if stabilization_counter[i] >= 5:  # Stuck for 5 iterations
+                            if stabilization_counter[i] >= 7:  # Stuck for longer to avoid false positives
                                 reached[i] = True
                                 final_angles[i] = actual_angles[i]
                                 final_forces[i] = actual_forces[i]
@@ -222,9 +274,10 @@ class PickObjectNode:
             self._prev_angles = actual_angles.copy()
             
             # Log progress every second
-            if iteration % 7 == 0:
+            if iteration % 10 == 0:
                 rospy.loginfo(f"Iter {iteration}: Cmd={[int(x) for x in command_angles[:5]]}, "
-                             f"Actual={actual_angles[:5]}, Forces={actual_forces[:5]}")
+                             f"Actual={actual_angles[:5]}, Forces={actual_forces[:5]}, "
+                             f"Vel={[int(v) for v in velocity[:5]]}")
         
         # Summary
         elapsed = time.time() - start_time

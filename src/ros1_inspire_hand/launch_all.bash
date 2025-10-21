@@ -21,7 +21,7 @@ tmux new-session -d -s "$SESSION_NAME" "roscore"
 # Split and run ROS nodes
 tmux split-window -h -t "$SESSION_NAME:0" "rosrun ros1_inspire_hand driver_ros1.py"
 tmux split-window -v -t "$SESSION_NAME:0" "rosrun ros1_inspire_hand visualizer_ros1.py"
-tmux split-window -v -t "$SESSION_NAME:0" "rosrun ros1_inspire_hand pick_object_node_pid_ros1_open_close.py"
+tmux split-window -v -t "$SESSION_NAME:0" "rosrun ros1_inspire_hand grip.py"
 
 # Split for user interaction (input commands)
 tmux split-window -v -t "$SESSION_NAME:0" "bash -c '
