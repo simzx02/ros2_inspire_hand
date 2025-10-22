@@ -22,17 +22,20 @@ class PickObjectNode:
         # Publisher for right hand (DDS for control only)
         self.pubr = ChannelPublisher("rt/inspire_hand/ctrl/r", inspire_dds.inspire_hand_ctrl)
         self.pubr.Init()
+        
+        # ROS publisher for calibrated forces
+        self.calibrated_force_pub = rospy.Publisher('/inspire_hand/force_calibrated', Float32MultiArray, queue_size=10)
 
         # Prepare command
         self.cmd = inspire_hand_defaut.get_inspire_hand_ctrl()
 
         # Control parameters
         self.force_limits = [300] * 6  # Force limit in grams
-        self.min_angle = 50  # Fully closed
+        self.min_angle = 0  # Fully closed
         self.max_angle = 850  # Fully open
         self.open_speed = 350
-        self.close_speed = 150
-        self.step_size = 10  # Angle step per iteration
+        self.close_speed = 250
+        self.step_size = 5  # Angle step per iteration
         
         # Fixed finger 6 (thumb abduction)
         self.finger6_fixed = True
@@ -66,15 +69,15 @@ class PickObjectNode:
         else:
             rospy.logwarn("No sensor data received. Using defaults.")
 
-        # Calibrate force sensors (remove zero-offset)
-        rospy.loginfo("Calibrating force sensors...")
-        time.sleep(0.5)
-        self.calibrate_forces()
-        rospy.loginfo(f"Force offsets: {self.force_offsets}")
-
         # Auto-open fingers on startup
         rospy.loginfo("Auto-opening fingers on startup...")
         self.open_all_fingers()
+        
+        # Calibrate force sensors in open position
+        rospy.loginfo("Calibrating force sensors...")
+        time.sleep(1.0)  # Wait for settling
+        self.calibrate_forces()
+        
         rospy.loginfo("Initialization complete. Ready for commands.")
 
         rospy.spin()
@@ -87,8 +90,16 @@ class PickObjectNode:
     def force_callback(self, msg):
         with self.data_lock:
             raw_forces = [int(x) for x in msg.data]
-            # Apply calibration offset and ensure non-negative
-            self.current_forces = [max(0, raw_forces[i] - self.force_offsets[i]) for i in range(6)]
+            # Apply calibration offset
+            self.current_forces = [raw_forces[i] - self.force_offsets[i] for i in range(6)]
+        
+        # Publish calibrated forces for GUI (outside lock to avoid deadlock)
+        try:
+            calibrated_msg = Float32MultiArray()
+            calibrated_msg.data = [float(f) for f in self.current_forces]
+            self.calibrated_force_pub.publish(calibrated_msg)
+        except:
+            pass  # Ignore publishing errors during shutdown
 
     def calibrate_forces(self):
         """Calibrate force sensors to remove zero-offset (baseline readings)."""
@@ -108,19 +119,39 @@ class PickObjectNode:
             return self.current_angles.copy(), self.current_forces.copy()
 
     def calibrate_forces(self):
-        """Calibrate force sensors to remove zero-offset (baseline readings)."""
-        samples = []
-        for _ in range(10):
-            with self.data_lock:
-                # Read raw forces before calibration
-                raw_forces = self.current_forces.copy()
-            samples.append(raw_forces)
-            time.sleep(0.05)
+        """
+        Calibrate force sensors to zero in open position.
+        Samples raw force readings and stores offsets.
+        """
+        rospy.loginfo("Sampling force sensors (20 samples over 1 second)...")
+        raw_samples = []
+        
+        # Take 20 samples
+        for _ in range(20):
+            try:
+                msg = rospy.wait_for_message("/inspire_hand/force", Float32MultiArray, timeout=1.0)
+                raw_forces = [int(x) for x in msg.data]
+                raw_samples.append(raw_forces)
+                time.sleep(0.05)
+            except:
+                rospy.logwarn("Timeout reading force during calibration")
+                continue
+        
+        if len(raw_samples) < 10:
+            rospy.logwarn("Insufficient samples, using zero offsets")
+            self.force_offsets = [0] * 6
+            return
         
         # Calculate average offset for each finger
         for i in range(6):
-            avg_offset = sum(sample[i] for sample in samples) / len(samples)
-            self.force_offsets[i] = int(avg_offset)
+            avg_offset = sum(sample[i] for sample in raw_samples) / len(raw_samples)
+            self.force_offsets[i] = int(round(avg_offset))
+        
+        rospy.loginfo(f"✓ Calibration complete!")
+        rospy.loginfo(f"  Offsets: F1={self.force_offsets[0]:+3d}g, F2={self.force_offsets[1]:+3d}g, "
+                     f"F3={self.force_offsets[2]:+3d}g, F4={self.force_offsets[3]:+3d}g, "
+                     f"F5={self.force_offsets[4]:+3d}g, F6={self.force_offsets[5]:+3d}g")
+        rospy.loginfo("  All forces now read 0g in open position")
 
     def open_all_fingers(self):
         """Open all fingers to max angle."""
@@ -149,9 +180,9 @@ class PickObjectNode:
         start_time = time.time()
         
         # Improved PID parameters for smoother motion
-        Kp = 0.5  # Reduced for gentler response
-        Ki = 0.01  # Reduced to prevent integral windup
-        Kd = 0.15  # Increased for better damping
+        Kp = 2  # Reduced for gentler response
+        Ki = 0.05  # Reduced to prevent integral windup
+        Kd = 0.5  # Increased for better damping
         
         # Initialize tracking
         reached = [False] * 6
@@ -350,7 +381,7 @@ class PickObjectNode:
                     fluctuation_count = 0
                     for j in range(1, len(force_history[i])):
                         change = abs(force_history[i][j] - force_history[i][j-1])
-                        if change >= 10:
+                        if change >= 20:
                             fluctuation_count += 1
                     
                     # If this finger has 3+ fluctuations, it's slipping
